@@ -1,5 +1,8 @@
 .box {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  width: 350px;
+  gap: 5px;
+  padding-top: 25px;
+  padding-bottom: 25px;
 }

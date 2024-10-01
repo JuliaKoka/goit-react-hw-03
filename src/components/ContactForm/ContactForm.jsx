@@ -5,7 +5,6 @@ import * as Yup from "yup";
 import css from "./ContactForm.module.css";
 
 const initialValues = {
-  id: "",
   name: "",
   number: "",
 };
@@ -26,8 +25,7 @@ export default function ContactForm({ onAdd }) {
   const numberId = nanoid();
 
   const handleSubmit = (values, actions) => {
-    console.log(values);
-    onAdd({ id: nanoid(), name: values.name, number: values.number });
+    onAdd({ id: nanoid(4), name: values.name, number: values.number });
     actions.resetForm();
   };
 
@@ -38,13 +36,19 @@ export default function ContactForm({ onAdd }) {
       validationSchema={FeedbackSchema}
     >
       <Form className={css.form}>
-        <label htmlFor={nameId}>Name</label>
-        <Field type="text" name="name" id={nameId}></Field>
-        <ErrorMessage name="name" component="span" />
-        <label htmlFor={numberId}>Number</label>
-        <Field type="tel" name="number" id={numberId}></Field>
-        <ErrorMessage name="number" component="span" />
-        <button type="submit">Add contact</button>
+        <div className={css.field}>
+          <label htmlFor={nameId}>Name</label>
+          <Field type="text" name="name" id={nameId}></Field>
+          <ErrorMessage className={css.span} name="name" component="span" />
+        </div>
+        <div className={css.field}>
+          <label htmlFor={numberId}>Number</label>
+          <Field type="tel" name="number" id={numberId}></Field>
+          <ErrorMessage className={css.span} name="number" component="span" />
+        </div>
+        <button className={css.button} type="submit">
+          Add contact
+        </button>
       </Form>
     </Formik>
   );
